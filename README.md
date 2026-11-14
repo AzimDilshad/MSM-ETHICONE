@@ -42,6 +42,10 @@ If `npx` asks to install Supabase CLI, accept. The project ref is the subdomain 
 
 The app includes sign-in and password reset, live dashboard totals, searchable and paginated CRUD screens for the core Mahal records, CSV export of the visible page, and private Cloudinary document upload and authorized download links. Access is isolated by organisation membership and Supabase RLS. First admin provisioning remains a one-time SQL operation in the setup steps above.
 
+## Deploy to Vercel
+
+Import `AzimDilshad/MSM-ETHICONE` from the Vercel dashboard. Vercel detects the Vite setup and uses `npm run build` with `dist` output; `vercel.json` includes the single-page app fallback. In the Vercel project settings, add these Environment Variables for Production (and Preview if needed): `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`, and `VITE_ORGANISATION_ID`. Use the Supabase URL, public anon/publishable key, and organisation UUID from your local config. Do not add a Supabase service-role key or Cloudinary API secret to Vercel. After the first deploy, add the new Vercel domain under Supabase Authentication URL Configuration → Redirect URLs so password reset can return to the app.
+
 ## Demo data for a presentation
 
 After creating your organisation and applying the migrations, open `supabase/seed_presentation.sql`, copy its contents into the Supabase SQL Editor, and run it. It seeds fictional wards, families, members, transactions, donations, events, and announcements for the most recently created organisation. It can be run again without duplicating those sample records. Review the selected organisation first if your project contains more than one Mahal.
