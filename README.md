@@ -6,7 +6,7 @@ React + TypeScript + Vite frontend with Supabase PostgreSQL/Auth and Cloudinary 
 
 1. Install Node.js 20 or later and run `npm install`.
 2. Copy `.env.example` to `.env.local` and fill `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`, and `VITE_ORGANISATION_ID`. The browser key must be Supabase's anon/publishable key. Never put a service-role key in a `VITE_` variable.
-3. In Supabase, apply `supabase/migrations/202611140001_initial_schema.sql` using the SQL Editor. If you already applied it, apply `202611140002_module_permissions_and_prayer.sql` as well to add prayer scheduling, role-based private documents, and read-only auditor rules.
+3. In Supabase, apply these migrations in order using the SQL Editor: `202611140001_initial_schema.sql`, `202611140002_module_permissions_and_prayer.sql`, and `202611160003_operations_tables.sql`. If you have already applied earlier migrations, apply any later migration you have not run.
 4. Create an organisation and first admin membership. After creating the admin user in Supabase Auth, run this once as the project owner in SQL Editor, replacing the sample values:
 
 ```sql
@@ -40,7 +40,7 @@ npx supabase functions deploy create-document-download
 
 If `npx` asks to install Supabase CLI, accept. The project ref is the subdomain in `https://YOUR_PROJECT_REF.supabase.co`.
 
-The app includes sign-in and password reset, live dashboard totals, searchable and paginated CRUD screens for the core Mahal records, CSV export of the visible page, and private Cloudinary document upload and authorized download links. Access is isolated by organisation membership and Supabase RLS. First admin provisioning remains a one-time SQL operation in the setup steps above.
+The app includes sign-in and password reset, live dashboard totals and charts, member and family profiles, relationship selectors, search, status/date/demographic filters, pagination, CSV and Excel import/export for family/member registers, report filtering and export, print-friendly profiles, and private Cloudinary document upload/download. Access is organisation-scoped with Supabase RLS; welfare and document categories have narrower role policies. First admin provisioning remains a one-time SQL operation in the setup steps above.
 
 ## Deploy to Vercel
 

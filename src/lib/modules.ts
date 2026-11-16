@@ -48,6 +48,14 @@ export const modules: ModuleConfig[] = [
  sharedOrg('nikah_witnesses','Nikah witnesses','Services','nikah_witnesses',['name','phone'],[f('application_id','Nikah application UUID','text',true),f('name','Witness name','text',true),f('phone','Phone','tel'),f('witness_type','Witness type')]),
  sharedOrg('staff_attendance','Staff attendance','People','staff_attendance',['status'],[f('staff_id','Staff UUID','text',true),f('attendance_date','Date','date',true),f('status','Status','select',true,['present','absent','leave'])]),
  sharedOrg('notifications','Notifications','Communication','notifications',['title','body'],[f('user_id','User UUID'),f('title','Title','text',true),f('body','Message','textarea'),f('read_at','Read at','datetime-local')]),
+ sharedOrg('financial_years','Financial years','Administration','financial_years',['name'],[f('name','Year name','text',true),f('starts_on','Starts on','date',true),f('ends_on','Ends on','date',true),f('active','Active year','checkbox')]),
+ sharedOrg('fee_concessions','Fee concessions','Membership','fee_concessions',['reason','status'],[f('family_id','Family'),f('member_id','Member'),f('amount','Concession amount','number',true),f('reason','Reason','textarea',true),f('status','Approval status','select',true,['pending','approved','rejected'])]),
+ sharedOrg('staff_leaves','Staff leave','People','staff_leaves',['reason','status'],[f('staff_id','Staff','text',true),f('starts_on','Starts on','date',true),f('ends_on','Ends on','date',true),f('reason','Reason','textarea'),f('status','Status','select',true,['pending','approved','rejected'])]),
+ sharedOrg('meeting_attendance','Meeting attendance','Committee','meeting_attendance',[],[f('meeting_id','Meeting','text',true),f('committee_member_id','Committee member','text',true),f('attended','Attended','checkbox')]),
+ sharedOrg('nikah_documents','Nikah documents','Services','nikah_documents',['document_type'],[f('application_id','Nikah application','text',true),f('document_id','Document record','text',true),f('document_type','Document type','text',true)]),
+ sharedOrg('transaction_attachments','Transaction attachments','Finance','transaction_attachments',[],[f('transaction_id','Transaction','text',true),f('document_id','Document','text',true)]),
+ sharedOrg('user_masals','Organisation members','Administration','user_masals',[],[f('user_id','Supabase Auth user UUID','text',true)]),
+ sharedOrg('user_roles','User role assignments','Administration','user_roles',[],[f('user_id','Supabase Auth user UUID','text',true),f('role_id','Role','text',true)]),
 ];
 
 export const groups = [...new Set(modules.map(m=>m.group))];
